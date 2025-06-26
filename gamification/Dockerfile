@@ -1,5 +1,9 @@
 FROM openjdk:17
-COPY ./target/gamification-0.0.1-SNAPSHOT.jar /usr/src/gamification/
-WORKDIR /usr/src/gamification
+COPY ./target/gamification-0.0.1-SNAPSHOT.jar /usr/src/app/
+COPY ./opentelemetry-javaagent.jar /usr/src/app/
+
+WORKDIR /usr/src/app
+ENV JAVA_TOOL_OPTIONS=-javaagent:/usr/src/app/opentelemetry-javaagent.jar
+
 EXPOSE 8080
 CMD ["java", "-jar", "gamification-0.0.1-SNAPSHOT.jar"]

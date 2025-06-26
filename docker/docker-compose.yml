@@ -10,6 +10,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
+      - OTEL_SERVICE_NAME=multiplication
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-lgtm:4318
     depends_on:
       rabbitmq-dev:
           condition: service_healthy
@@ -20,6 +23,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
+      - OTEL_SERVICE_NAME=gamification
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-lgtm:4318
     depends_on:
       rabbitmq-dev:
           condition: service_healthy
@@ -32,6 +38,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
+      - OTEL_SERVICE_NAME=gateway
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-lgtm:4318
     depends_on:
       rabbitmq-dev:
           condition: service_healthy
@@ -42,6 +51,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
+      - OTEL_SERVICE_NAME=logs
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-lgtm:4318
     depends_on:
       rabbitmq-dev:
           condition: service_healthy
@@ -76,6 +88,17 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+  otel-lgtm:
+    image: grafana/otel-lgtm
+    container_name: otel-lgtm
+    ports:
+      - "3001:3000"
+      - "4317:4317"
+      - "4318:4318"
+    restart: on-failure
+    tty: true 
+    networks:
+      - microservices
 networks:
   microservices:
     driver: bridge
