@@ -1,4 +1,4 @@
-# Learn Microservices with Spring Boot 3
+# Learn Microservices with Spring Boot 3 (including grafana lgtm)
 This repository contains the source code of the practical use case described in the book [Learn Microservices with Spring Boot 3 (3rd Edition)](https://link.springer.com/book/10.1007/978-1-4842-9757-5).
 And I made some changes and integrate grafana lgtm into it for metrics/traces/logs/profiles
 
