@@ -25,10 +25,10 @@ The main concepts included in this project are:
 First, build the application images with Dockerfiles which includes opentelemetry java agent:
 
 ```bash
-docker build -t  multiplication:0.0.1-SNAPSHOT .
-docker build -t  gamification:0.0.1-SNAPSHOT .
+multiplication>docker build -t  multiplication:0.0.1-SNAPSHOT .
+gamification>docker build -t  gamification:0.0.1-SNAPSHOT .
 gateway>docker build -t  gateway:0.0.1-SNAPSHOT .
-docker build -t  logs:0.0.1-SNAPSHOT .
+logs>docker build -t  logs:0.0.1-SNAPSHOT .
 ```
 
 Then, build the consul importer from the `docker/consul` folder:
